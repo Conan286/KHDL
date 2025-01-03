@@ -1,0 +1,52 @@
+\makeglossaries
+%\makenoidxglossaries
+\newlength{\glscolwidthA}
+\newlength{\glscolwidthB}
+\setlength{\glscolwidthA}{2cm} % Độ rộng cột name
+\setlength{\glscolwidthB}{\dimexpr\linewidth-\glscolwidthA-4\tabcolsep} % Độ rộng cột description
+
+\newglossarystyle{mylist}{%
+    \setglossarystyle{long}% sử dụng longtable style
+    \renewenvironment{theglossary}%
+        {\begin{longtable}{p{\glscolwidthA}p{\glscolwidthB}}}%
+        {\end{longtable}}%
+    \renewcommand*{\glossaryheader}{}%
+    \renewcommand*{\glsgroupheading}[1]{}%
+    \renewcommand*{\glsgroupskip}{}%
+    \renewcommand{\glossentry}[2]{%
+        \glstarget{##1}{\glossentryname{##1}} & \glossentrydesc{##1}\tabularnewline
+    }%
+}
+
+
+% Danh mục thuật ngữ và từ viết tắt
+\newglossaryentry{iaas}{
+    type=\acronymtype,
+    name={IaaS: Infrastructure  as  a  Service},
+    description={Dịch vụ hạ tầng},
+    first={Dịch vụ hạ tầng}
+}
+\newglossaryentry{API}{
+    type=\acronymtype,
+    name={API: Application Programming Interface},
+    description={Giao diện lập trình ứng dụng},
+    first={API}
+}
+\newglossaryentry{EUD}{
+    type=\acronymtype,
+    name={EUD: End-User Development},
+    description={Phát triển ứng dụng người dùng cuối},
+    first={End-User Development}
+}
+\newglossaryentry{GWT}{
+    type=\acronymtype,
+    name={GWT: Google Web Toolkit},
+    description={Công cụ lập trình Javascript bằng Java của Google},
+    first={Công cụ lập trình Javascript bằng Java của Google (Google Web Toolkit}
+}
+\newglossaryentry{HTML}{
+    type=\acronymtype,
+    name={HTML: HyperText Markup Language},
+    description={Ngôn ngữ đánh dấu siêu văn bản},
+    first={Dịch vụ hạ tầng (Infrastructure  as  a  Service - IaaS)}
+}

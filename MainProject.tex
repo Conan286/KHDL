@@ -1,0 +1,248 @@
+\documentclass[a4paper,13pt]{report}
+
+%% Packages
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usetikzlibrary{calc}
+\usepackage{tocloft}
+\usepackage[utf8]{vietnam}
+\usepackage{titlesec}
+\usepackage{everypage}
+\usepackage{afterpage}
+\usepackage[vietnamese]{babel} 
+\usepackage{times} %Times Font
+\usepackage{atbegshi}
+\usepackage{titletoc}
+\usepackage[nonumberlist, nopostdot, nogroupskip, acronym]{glossaries}
+\usepackage{glossary-superragged}
+\setglossarystyle{superraggedheaderborder}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{glossaries}
+\usepackage{longtable}
+\usepackage{truncate} 
+\usepackage{hyperref}
+%\usepackage{hyperref}
+
+
+\renewcommand{\bibname}{Danh_sach_tai_lieu_tham_khao} 
+\usepackage[backend=bibtex,style=ieee]{biblatex}  %backend=biber is 'better'
+
+\addbibresource{Danh_sach_tai_lieu_tham_khao.bib} % 
+
+
+
+\renewcommand{\baselinestretch}{1.5}
+
+\def\PageTopMargin{0in}
+\def\PageLeftMargin{0in}
+\newcommand\atxy[3]{
+    \AddThispageHook{
+        \smash{
+            \hspace*{
+                \dimexpr-\PageLeftMargin-\hoffset+#1\relax
+            }
+            \raisebox{
+                \dimexpr\PageTopMargin+\voffset-#2\relax
+            }{#3}
+        }
+    }
+}
+
+% package content table
+\titleformat{\chapter}[hang]{\centering\bfseries}{CHƯƠNG \thechapter.\ }{0pt}{}[]
+\titleformat 
+    {\chapter} % command
+    [hang] % shape
+    {\centering\bfseries} % format
+    {CHƯƠNG \thechapter.\ } % label
+    {0pt} %sep
+    {} % before
+    [] % after
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+\titleformat
+    {\section} % command
+    [hang] % shape
+    {\bfseries} % format
+    {\thechapter.\arabic{section}\ \ \ \ } % label
+    {0pt} %sep
+    {} % before
+    [] % after
+\titlespacing{\section}{0pt}{\parskip}{0.5\parskip}
+
+\titleformat
+    {\subsection} % command
+    [hang] % shape
+    {\bfseries} % format
+    {\thechapter.\arabic{section}.\arabic{subsection}\ \ \ \ } % label
+    {0pt} %sep
+    {} % before
+    [] % after
+\titlespacing{\subsection}{30pt}{\parskip}{0.5\parskip}
+
+\renewcommand\thesubsubsection{\alph{subsubsection}}
+\titleformat
+    {\subsubsection} % command
+    [hang] % shape
+    {\bfseries} % format
+    {\alph{subsubsection}, \ } % label
+    {0pt} %sep
+    {} % before
+    [] % after
+\titlespacing{\subsubsection}{50pt}{\parskip}{0.5\parskip}
+
+\renewcommand{\contentsname}{\centering\Large\MakeUppercase{Mục lục} }
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries\MakeUppercase} % Căn giữa và làm đậm tiêu đề mục lục
+\renewcommand{\cftaftertoctitle}{\hfill} % Căn giữa tiêu đề mục lục
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % Chấm dẫn dưới mục chương
+\titlecontents{chapter}
+    [0.0cm]             % left margin
+    {\bfseries\vspace{0.3cm}}                  % above code
+    {{\bfseries{\scshape} CHƯƠNG \thecontentslabel.\ }} % numbered format
+    {}         % unnumbered format
+    {\titlerule*[0.3pc]{.}\contentspage}         % filler-page-format, e.g dots
+
+
+\titlecontents{section}
+    [0.0cm]             % left margin
+    {\vspace{0.3cm}}                  % above code
+    {\thecontentslabel \ } % numbered format
+    {}         % unnumbered format
+    {\titlerule*[0.3pc]{.}\contentspage}         % filler-page-format, e.g dots
+\titlecontents{subsection}
+    [1.0cm]             % left margin
+    {\vspace{0.3cm}}                  % above code
+    {\thecontentslabel \ } % numbered format
+    {}         % unnumbered format
+    {\titlerule*[0.3pc]{.}\contentspage}         % filler-page-format, e.g dots
+
+
+\input{0_5_Tu_viet_tat}
+
+% =========================== BODY ===============
+\begin{document}
+
+%\sloppy
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NHÓM 12 - LỚP N04 } % Di chuyển header về bên trái
+\renewcommand{\headrulewidth}{0.4pt} % Gạch dưới header
+
+\fancyfoot[R]{\roman{page}} % Số trang theo chữ số La mã ở bên phải của footer
+
+
+\pagenumbering{gobble}
+
+
+\include{0_0_CoverPage}
+\include{0_1_SubCoverPage}
+%\include{0_2_Approve}
+%\include{0_3_Argue}
+
+%\clearpage % Tạo trang mới
+% Thêm trang Lời cảm ơn vào Mục lục
+
+\pagenumbering{roman}
+\addcontentsline{toc}{chapter}{LỜI CẢM ƠN}
+\include{0_4_LoiCamOn.tex}
+
+% Thêm không gian trước mục lục
+\thispagestyle{fancy}
+% Tạo mục lục tự động
+\addcontentsline{toc}{chapter}{MỤC LỤC}
+\tableofcontents
+
+
+% Tạo khối văn bản dưới tiêu đề mục lục
+
+%DANH MỤC CÁC KÝ HIỆU VÀ CHỮ VIẾT TẮT
+\glsaddall 
+% \renewcommand*{\glossaryname}{Danh sách thuật ngữ}
+\renewcommand*{\acronymname}{\Large DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT}
+\renewcommand*{\entryname}{\centering \hspace{1.75cm} Thuật ngữ}
+\renewcommand*{\descriptionname}{\centering Ý nghĩa}
+\addcontentsline{toc}{chapter}{DANH MỤC CÁC KÝ HIỆU VÀ CHỮ VIẾT TẮT}
+\printglossaries
+
+% \phantomsection\addcontentsline{toc}{section}{\numberline {} DANH MỤC THUẬT NGỮ VÀ TỪ VIẾT TẮT}
+
+
+% Tạo danh mục các hình vẽ
+\newpage
+\thispagestyle{fancy}
+\vspace*{-2.5cm} % Thay đổi giá trị để điều chỉnh khoảng cách
+\addcontentsline{toc}{chapter}{ DANH MỤC CÁC HÌNH VẼ}
+% Đổi tên danh mục hình vẽ thành "DANH MỤC HÌNH VẼ" và căn giữa tiêu đề
+\renewcommand{\listfigurename}{\centering\Large\MakeUppercase{\hspace{5.5cm} DANH MỤC HÌNH VẼ}}
+\listoffigures
+
+%DANH MỤC CÁC BẢNG
+\newpage
+\thispagestyle{fancy}
+\vspace*{-2.5cm} % Thay đổi giá trị để điều chỉnh khoảng cách
+\addcontentsline{toc}{chapter}{DANH MỤC CÁC BẢNG}
+\renewcommand{\listtablename}{\centering\Large\MakeUppercase{\hspace{5cm} DANH MỤC BẢNG BIỂU}}
+\listoftables
+% \phantomsection\addcontentsline{toc}{section}{\numberline {} DANH MỤC BẢNG BIỂU}
+\newpage
+\addcontentsline{toc}{chapter}{PHẦN MỞ ĐẦU}
+\include{0_6_PhanMoDau}
+
+
+
+% ===================================================
+
+\newpage
+\pagenumbering{arabic}
+\fancypagestyle{mainstyle}{
+  \fancyhf{} % Xóa tất cả các header và footer hiện tại
+  \fancyhead[L] {Nhập môn Khoa học dữ liệu} % Di chuyển header về bên trái
+  \fancyhead[R]{\nouppercase{\truncate{0.5\headwidth}{\leftmark}}}
+  \renewcommand{\headrulewidth}{0.4pt} % Độ dày của đường line phía trên header
+  \renewcommand{\footrulewidth}{0.4pt} % Độ dày của đường line phía dưới footer
+ \fancyfoot[L]{NHÓM 12 - LỚP N04 }
+  \fancyfoot[R]{\thepage} % Hiển thị số trang ở bên phải
+}
+% Định nghĩa lệnh \shorttitle để cắt ngắn tiêu đề
+
+
+\pagestyle{mainstyle}
+\include{Chapters/1_GioiThieuDeTai}% Phần mở đầu
+
+\pagestyle{mainstyle}
+\include{Chapters/2_TienDoTungTuan}% Phần mở đầu
+
+\pagestyle{mainstyle}
+\addcontentsline{toc}{chapter}{PHẦN KẾT LUẬN}
+\include{Chapters/3_KetLuan}
+
+\pagestyle{mainstyle}
+
+
+
+\addcontentsline{toc}{chapter}{LƯU Ý VỀ TÀI LIỆU THAM KHẢO}
+\include{Chapters/4_TLTK}
+
+\newpage
+\renewcommand\bibname{TÀI LIỆU THAM KHẢO}
+\printbibliography
+\phantomsection\addcontentsline{toc}{chapter}{TÀI LIỆU THAM KHẢO}
+
+
+%\mainmatter
+\newpage
+\begin{center}
+    \vspace*{5cm}\linespread{5}\Huge\textbf{PHỤ LỤC}\\
+\end{center}
+
+
+\include{Chapters/Phu_luc_A}
+\include{Chapters/Phu_luc_B}
+\end{document}
+
